@@ -34,7 +34,7 @@ export class Server {
             this.processMessageForChannel(channel, messageObject);
         });
 
-        setInterval(this.sendMetric, Number(Constants.METRIC_SENT_INTERVAL));
+        setInterval(this.sendMetric.bind(this), Number(Constants.METRIC_SENT_INTERVAL));
 
         process.on('SIGINT', function () {
             console.log("shutting down gracefully.")

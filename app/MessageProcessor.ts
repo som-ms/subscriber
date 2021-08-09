@@ -1,5 +1,6 @@
 import { Constants } from "./Constants";
 import * as appInsight from 'applicationinsights';
+import { MessageReceived } from "./MessageReceived";
 
 export class MessageProcessor {
     totalMessagesReceived: number;
@@ -30,6 +31,8 @@ export class MessageProcessor {
 
     public processMessage(messageObject: Message): void {
         this.messageReceiveStarted = true;
+        this.totalMessagesReceived++;
+        this.messageBatchReceived++;
         if (this.isNumberInSequence(messageObject.content)) {
             var currentTime = Date.now();
             if (
